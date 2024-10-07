@@ -1,5 +1,5 @@
 export default function cleanSet(set, startString) {
-  if (startString.length === 0 || typeof startString !== 'string') {
+  if (startString.length === 0 || typeof startString !== 'string' || startString === '') {
     return '';
   }
   return [...set].filter((val) => val && val.startsWith(startString))
