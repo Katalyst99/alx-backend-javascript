@@ -42,8 +42,11 @@ const app = http.createServer((req, res) => {
     countStudents(process.argv[2]).then((content) => {
       res.end(`This is the list of our students\n${content.join('\n')}`);
     }).catch((error) => {
-      res.end(error);
+      res.end(error.message);
     });
+  } else {
+    res.statusCode = 404;
+    res.end();
   }
 });
 
