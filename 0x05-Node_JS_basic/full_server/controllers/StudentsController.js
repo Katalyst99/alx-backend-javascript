@@ -11,7 +11,7 @@ class StudentsController {
       }
       response.status(200).send(resp.trim());
     } catch (err) {
-      response.send(500, 'Cannot load the database');
+      response.status(500).send('Cannot load the database');
     }
   }
 
@@ -19,15 +19,15 @@ class StudentsController {
     const { major } = request.params;
     const path = process.argv[2];
     if (major !== 'CS' && major !== 'SWE') {
-      response.send(500, 'Major parameter must be CS or SWE');
+      response.status(500).send('Major parameter must be CS or SWE');
       return;
     }
     try {
       const flds = await readDatabase(path);
       const val = flds[major] || [];
-      response.send(200, `List: ${val.join(', ')}`);
+      response.status(200).send(`List: ${val.join(', ')}`);
     } catch (err) {
-      response.send(500, 'Cannot load the database');
+      response.status(500).send('Cannot load the database');
     }
   }
 }
