@@ -9,7 +9,7 @@ class StudentsController {
       for (const [fld, val] of Object.entries(flds).sort()) {
         resp += `Number of students in ${fld}: ${val.length}. List: ${val.join(', ')}\n`;
       }
-      response.status(200).send(response.trim());
+      response.status(200).send(resp.trim());
     } catch (err) {
       response.send(500, 'Cannot load the database');
     }
